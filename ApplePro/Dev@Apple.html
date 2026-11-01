@@ -1,336 +1,309 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Dev@Apple</title>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<title>Apple</>Dev</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAsUlEQVR4nOyXOw5AQBBAR+ISNG7gIBKdQuUCCr1bKBxBotC5gSO4AQW1E1BJEEMy+y3mdZvMJm9nMruzLhjGBcOQBcoo2K/rJgtf46a0d0CFgCxYQJrAX62VC1BBrcMl3782jn7tiMSf2JeBv5OI8syEvV1QeMltXa0dUNiGGUgCumABVIBac2kCumABFmAB8jyAgd392MRkbwZOsEw83/WgjV/jrP8XkCZZmXAbGhc4AAAA//8jYF61AAAABklEQVQDAFMBKhgSH/VrAAAAAElFTkSuQmCC">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=VT323&display=swap" rel="stylesheet">
 <style>
 :root {
   color-scheme: dark;
-  --black: #030403;
-  --card: #0a0d0a;
-  --border: #18261b;
-  --white: #e9f2ea;
-  --gray: #8a9b8c;
-  --green: #22e06b;
-  --dark-green: #0f5a2c;
+  --bg: #040504;
+  --panel: #0a0f0b;
+  --green: #3ddc84;
+  --mid: #1f7a47;
+  --deep: #0f3d24;
+  --text: #d8f5e2;
+  --pixel: "Silkscreen", "Courier New", monospace;
+  --body: "VT323", "Courier New", monospace;
+  --carpet: 300px;
+  
+  text-shadow: 1px -2px 6px rgba(48, 243, 113, 0.9);
+  box-sizing: border-box;
   padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: env(safe-area-inset-bottom, 0px);
+
 }
-* { box-sizing: border-box; }
-html { background: var(--black); scroll-behavior: smooth; }
-body { margin: 0; background: var(--black); color: var(--white); font: 1rem/1.6 'DM Sans', system-ui, sans-serif; }
-h1, h2, h3, .logo { font-family: 'Sora', Arial, sans-serif; }
-a { color: inherit; }
-.aldin { padding: 1 rem 0 2rem; color: var(--gray); border-top: 1px solid var(--border); }
-.page { max-width: 1000px; margin: 0 auto; padding: 0 1.25 rem; }
-.top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; padding: 1.25rem 0; }
-.logo { font-weight: 800; font-size: 1.1rem; }
-.top nav { display: flex; flex-wrap: wrap; gap: 1.1rem; }
-.top nav a { color: var(--gray); text-decoration: none; font-size: 1 rem; }
-.top nav a:hover, .green { color: var(--green); }
-.hero { padding: clamp(3rem, 10vw, 7rem) 0; }
-.hero h1 { font-size: clamp(3.2rem, 15vw, 9rem); line-height: 0.9; letter-spacing: -0.05em; margin: 0 0 1.5rem; }
-.hero p { max-width: 34rem; color: var(--gray); font-size: 1.15rem; margin: 0 0 1.5rem; }
-section { padding-bottom: 4rem; }
-h2 { font-size: 1.7rem; margin: 0 0 1.5rem; padding-left: 0.8rem; border-left: 3px solid var(--green); }
-.note { color: var(--gray); max-width: 40rem; margin: 0 0 1.5rem; }
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 1rem; }
-.card { display: flex; flex-direction: column; gap: 0.6rem; padding: 1.3rem; background: var(--card); border: 1px solid var(--border); border-radius: 12px; }
-.card h3 { margin: 0; font-size: 1.15rem; }
-.card p { margin: 0; color: var(--gray); flex: 1; }
-.author { font-size: 0.85rem; color: var(--gray); }
-.tags { display: flex; flex-wrap: wrap; gap: 0.4rem; padding: 0; margin: 0; list-style: none; }
-.tags li { padding: 0.15rem 0.6rem; font-size: 0.8rem; color: var(--green); border: 1px solid var(--dark-green); border-radius: 99px; }
-.buttons { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-button, .button { padding: 0.55rem 1rem; font: 500 0.95rem 'DM Sans', sans-serif; color: var(--white); background: none; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; text-decoration: none; display: inline-block; }
-button:hover, .button:hover { border-color: var(--green); }
-.main-button { background: var(--green); color: #021207; border-color: var(--green); font-weight: 600; }
-.delete-button:hover { border-color: #ff5a5a; color: #ff7a7a; }
-.skills { display: flex; flex-wrap: wrap; gap: 0.6rem; padding: 0; margin: 0; list-style: none; }
-.skills li { padding: 0.5rem 1rem; background: var(--card); border: 1px solid var(--border); border-radius: 8px; }
-.about { max-width: 40rem; color: var(--gray); }
-form { display: grid; gap: 0.8rem; padding: 1.3rem; margin-bottom: 1.5rem; background: var(--card); border: 1px solid var(--border); border-radius: 12px; }
-.two-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
-label { display: grid; gap: 0.3rem; font-size: 0.9rem; color: var(--gray); }
-input, textarea { width: 100%; padding: 0.6rem 0.75rem; font: 0.95rem 'DM Sans', sans-serif; color: var(--white); background: var(--black); border: 1px solid var(--border); border-radius: 8px; }
-textarea { min-height: 11rem; resize: vertical; font-family: monospace; }
-input:focus, textarea:focus { border-color: var(--green); outline: none; }
-#form-message { min-height: 1.4rem; font-size: 0.9rem; color: var(--gray); }
-footer { padding: 1.5rem 0 2rem; color: var(--gray); border-top: 1px solid var(--border); }
-dialog { width: min(1000px, 94vw); height: min(720px, 86vh); max-width: none; padding: 0; color: var(--white); background: var(--card); border: 1px solid var(--dark-green); border-radius: 14px; }
-dialog[open] { display: flex; flex-direction: column; }
-dialog::backdrop { background: rgba(0, 0, 0, 0.8); }
-.dialog-top { display: flex; align-items: center; gap: 0.75rem; padding: 0.7rem 1rem; border-bottom: 1px solid var(--border); }
-.dialog-top strong { flex: 1; font-family: 'Sora', Arial, sans-serif; }
-.dialog-body { flex: 1; position: relative; background: white; }
-.dialog-body iframe { width: 100%; height: 100%; border: 0; }
-.empty { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; text-align: center; color: var(--gray); background: var(--black); }
-.empty strong { color: var(--white); font-size: 1.2rem; }
-@media (max-width: 640px) {
-  .two-columns { grid-template-columns: 1fr; }
-  dialog { width: 100vw; height: 100%; max-height: 100%; border-radius: 0; }
+*, *::before, *::after { box-sizing: inherit; }
+html { 
+  scroll-behavior: smooth; 
+  scroll-padding-top: 64px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+}
+::-webkit-scrollbar { display: none; }
+
+body { 
+  margin: 0;
+  background: linear-gradient(90deg, #000000, #021c0b, #000000);
+  color: var(--text);
+  font-family: var(--body);
+  font-size: 22px;
+  line-height: 1.35;
+}
+a { color: var(--green); }
+nav {
+  position: sticky;
+  
+  top: 0;
+  z-index: 10;
+  display: flex;
+  gap: 22px;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 14px 16px;
+  background: var(--bg);
+  background: linear-gradient(90deg, #000000, #021c0b, #000000);
+  border-bottom: 2px solid rgb(255, 250, 250) ;
+}
+nav a {
+  font-family: var(--pixel);
+  font-size: 13px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: var(--text);
+}
+nav a:hover { color: var(--green); }
+.page { position: relative; overflow: hidden; }
+.carpet {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: var(--carpet);
+  transform: translateX(-50%);
+  background:
+    repeating-linear-gradient(90deg, var(--green) 0 18px, var(--bg) 18px 26px, var(--mid) 26px 52px, var(--deep) 52px 70px, var(--bg) 70px 78px),
+    var(--bg);
+  border-left: 8px solid var(--green);
+  border-right: 8px solid var(--green);
+}
+.carpet::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(180deg, transparent 0 56px, rgba(4, 5, 4, 0.55) 56px 64px);
+  background-position: 0 var(--shift, 0px);
+}
+.carpet::after {
+  content: "";
+  position: absolute;
+  left: -8px;
+  right: -8px;
+  bottom: -36px;
+  height: 36px;
+  background: repeating-linear-gradient(90deg, var(--green) 0 6px, transparent 6px 14px);
+}
+.content { position: relative; padding-bottom: 80px; }
+.row {
+  display: grid;
+  grid-template-columns: 1fr var(--carpet) 1fr;
+  gap: 40px;
+  padding: 36px 4vw;
+  align-items: center;
+}
+.panel {
+  background: var(--panel);
+  border: 4px solid var(--green);
+  box-shadow: 8px 8px 0 var(--deep), inset 0px 0px 44px 22px rgba(0, 0, 0, 0.4);;
+
+  padding: 24px;
+  max-width: 460px;
+  position: relative;
+
+  
+
+}
+.left .panel { grid-column: 1; justify-self: end; }
+.right .panel { grid-column: 3; justify-self: start; }
+.center .panel { grid-column: 1 / 4; justify-self: center; width: 100%; max-width: 720px; }
+.left .panel::after, .right .panel::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 40px;
+  height: 8px;
+  background: var(--green);
+}
+.left .panel::after { left: 100%; margin-left: 4px; }
+.right .panel::after { right: 100%; margin-right: 4px; }
+.tag { font-family: var(--pixel); font-size: 13px; letter-spacing: 2px; text-transform: uppercase; margin: 0 0 12px; }
+h1, h2, h3 { font-family: var(--pixel); text-transform: uppercase; margin: 0; }
+h1 { font-size: clamp(34px, 5.5vw, 64px); line-height: 1; color: var(--green); text-shadow: 4px 4px 0 var(--deep); margin: 8px 0 16px; }
+h2 { font-size: 20px; color: var(--green); margin-bottom: 14px; }
+h2::before { content: "> "; }
+h3 { font-size: 15px; margin-bottom: 8px; }
+p { margin: 0 0 12px; }
+.hero { padding-top: 56px; }
+.hero .panel { text-align: center; max-width: 560px; }
+.profile-pic {
+  width: 110px;
+  height: 110px;
+  border: 3px solid var(--green);
+  box-shadow: 4px 4px 0 var(--deep);
+  object-fit: cover;
+  border-radius: 40%;
+  margin: 0 auto 16px auto;
+  display: block;
+  background: var(--bg);
+}
+.skills { display: flex; flex-wrap: wrap; gap: 10px; }
+.skills span { font-family: var(--pixel); font-size: 12px; border: 2px solid var(--mid); padding: 6px 10px; text-transform: uppercase; }
+button, .btn {
+  font-family: var(--pixel);
+  font-size: 12px;
+  text-transform: uppercase;
+  background: var(--green);
+  color: var(--bg);
+  border: 0;
+  padding: 10px 14px;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 var(--deep);
+  text-decoration: none;
+  display: inline-block;
+}
+button:hover, .btn:hover { background: var(--text); }
+button:disabled { background: var(--deep); color: var(--mid); cursor: not-allowed; box-shadow: none; }
+.ghost { background: transparent; color: var(--green); border: 2px solid var(--green); box-shadow: none; }
+.end { text-align: center; padding: 60px 24px 20px; color: #fafdfa; position: relative; }
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  background: rgba(0, 0, 0, 0.9);
+  display: none;
+  flex-direction: column;
+  padding: 16px;
+}
+.modal.open { display: flex; }
+.modal-bar { display: flex; justify-between: space-between; align-items: center; gap: 12px; padding-bottom: 12px; }
+.modal-bar strong { font-family: var(--pixel); font-size: 14px; text-transform: uppercase; color: var(--green); }
+.modal-actions { display: flex; gap: 10px; }
+.modal iframe { flex: 1; width: 100%; border: 4px solid var(--green); background: #fff; }
+@media (max-width: 860px) {
+  :root { --carpet: 100%; }
+  .carpet { opacity: 0.3; border: 0; }
+  .row { grid-template-columns: 1fr; padding: 24px 5vw; }
+  .left .panel, .right .panel, .center .panel { grid-column: 1; justify-self: stretch; max-width: none; }
+  .left .panel::after, .right .panel::after { display: none; }
 }
 </style>
 </head>
 <body>
-<div class="page">
-  <header class="top">
-    <span class="logo">Dev<span class="green">@</span>Apple</span>
-    <nav>
-      <a href="#projects">Projects</a>
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#contact">Contact</a>
-      <a href="#community">Your Projects</a>
-    </nav>
-  </header>
-  
-  <p class="aldin"></p>
+<nav>
+  <a href="#projects">Projects</a>
+  <a href="#about">About me</a>
+  <a href="#skills">Skills</a>
+  <a href="#contact">Contact</a>
+</nav>
 
-  <div class="hero">
-    <h1>Dev<span class="green">@</span>Apple</h1>
-    <p>Im A Vibe Coder that builds clean, fast websites. Preview my work below, or add your own project for others to see.</p>
-    <a class="button main-button" href="#projects">See my projects</a>
-  </div>
-
-  <section id="projects">
-    <h2>Projects</h2>
-    <div class="grid" id="my-projects"></div>
-  </section>
-
- 
-  <section id="about">
-    <h2>About</h2>
-    <p class="about">I'm a vibe coder who likes simple layouts, readable code and sites that load quickly. My projects are hosted on GitHub, and you can open each one with its preview button.</p>
-  </section>
-
-  <section id="skills">
-    <h2>Skills</h2>
-    <ul class="skills">
-      <li>HTML</li>
-      <li>CSS</li>
-      <li>JavaScript</li>
-      <li>Responsive design</li>
-      <li>Git and GitHub</li>
-    </ul>
-  </section>
-
-  <section id="contact">
-    <h2>Contact</h2>
-    <p class="note">Want to work together or say hello? Reach me here.</p>
-    <a class="button" href="https://github.com/Appl3w" target="_blank" rel="noopener">GitHub</a>
-  </section>
- <section id="community">
-    <h2>Your Projects</h2>
-    <p class="note">Paste your project's code (one HTML file) and it is added here. Anyone can preview it. Previews run in a locked box, so they can't touch this page.</p>
-    <form id="form" hidden>
-      <div class="two-columns">
-        <label>Project name <input id="title" maxlength="60" required></label>
-        <label>Your name <input id="author" maxlength="40" required></label>
+<div class="page" id="page">
+  <div class="carpet" id="carpet"></div>
+  <div class="content">
+    
+    <div class="row center hero">
+      <div class="panel">
+   
+        <p class="tag">Hi, my name is</p>
+        <h1>Apple</h1>     
+        <img src="a3.png" alt="Apple's Profile Picture" class="profile-pic">
+        <p>I’m a developer, designer and dreamer. I create really cool things for the web.</p>
+        <p class="tag">Scroll down to see more..</p>
       </div>
-      <label>Short description <input id="description" maxlength="140"></label>
-      <label>Code (one HTML file with CSS and JavaScript inside) <textarea id="code" required></textarea></label>
-      <div><button class="main-button" id="submit-button" type="submit">Add my project</button></div>
-      <div id="form-message"></div>
-    </form>
-    <p class="note" id="status">Loading projects...</p>
-    <div class="grid" id="community-projects"></div>
-  </section>
+    </div>
 
-  <footer>© <span id="year"></span> Dev@Apple</footer>
+    <div class="row left" id="about">
+      <div class="panel">
+        <h2>About me</h2>
+        <p>I build simple, good-looking things for the web. I care about clean code, bold visuals and projects people can actually open and use.</p>
+      </div>
+    </div>
+
+    <div class="row right" id="projects">
+      <div class="panel">
+        <h3>Apple’s Football Hub</h3>
+        <p>A football hub with scores, teams and news in one place.</p>
+        <button type="button" onclick="openPreview('Apple’s Football Hub', 'https://appl3w.github.io/AppleFC/AppleFC/index.html')">Preview</button>
+      </div>
+    </div>
+
+    <div class="row left">
+      <div class="panel">
+        <h3>Apple’s Web</h3>
+        <p>My personal web playground for experiments and ideas.</p>
+        <button type="button" disabled>Coming soon</button>
+      </div>
+    </div>
+
+    <div class="row right">
+      <div class="panel">
+        <h3>Apple's Gradient</h3>
+        <p>Pixel-styled CSS generator. Tweak gradients, shadows, and border radius with live previews, then copy the code.</p>
+        <button type="button" onclick="openPreview('Apple’s Gradient', 'https://appl3w.github.io/ApplesGradient')">Preview</button>
+      </div>
+    </div>
+
+    <div class="row left" id="skills">
+      <div class="panel">
+        <h2>Skills</h2>
+        <div class="skills">
+          <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Git &amp; GitHub</span><span>UI design</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row right" id="contact">
+      <div class="panel">
+        <h2>Contact</h2>
+        <p>Want to work together or just say hi? Find me on <a href="https://github.com/Appl3w" target="_blank" rel="noopener">GitHub</a>.</p>
+      </div>
+    </div>
+
+    <div class="end">Dev@Apple &copy; 2026</div>
+  </div>
 </div>
 
-<dialog id="preview">
-  <div class="dialog-top">
-    <strong id="preview-title"></strong>
-    <a class="button" id="preview-link" target="_blank" rel="noopener">Open in new tab</a>
-    <button id="close-button">Close</button>
+<div class="modal" id="modal">
+  <div class="modal-bar">
+    <strong id="modalTitle"></strong>
+    <div class="modal-actions">
+      <a class="btn ghost" id="modalOpen" target="_blank" rel="noopener">Open in new tab</a>
+      <button id="modalClose" type="button">Close</button>
+    </div>
   </div>
-  <div class="dialog-body" id="preview-body"></div>
-</dialog>
+  <iframe id="frame" title="Project preview" sandbox="allow-scripts allow-forms allow-popups"></iframe>
+</div>
 
 <script>
-const myProjects = [
-  { name: "Apple's Football Hub", description: "A football fan hub with fixtures, teams and news in one place.", tags: ["HTML", "CSS", "JavaScript"], url: "https://appl3w.github.io/AppleFC/AppleFC/index.html", repo: "https://github.com/Appl3w/AppleFC" },
-  { name: "Apple's Web", description: "My main web project, built as a clean and responsive site.", tags: ["HTML", "CSS"], url: "https://appl3w.github.io/ApplesWeb/Apples%20Web/index.html", repo: "https://github.com/Appl3w/ApplesWeb" },
-  { name: "Apple's Main", description: "A portfolio.", tags: ["HTML", "CSS", "JavaScript"], url: "", repo: "" }
-];
+const modal = document.getElementById("modal");
+const frame = document.getElementById("frame");
+const modalTitle = document.getElementById("modalTitle");
+const modalOpen = document.getElementById("modalOpen");
+const carpet = document.getElementById("carpet");
 
-const maxCodeLength = 120000;
-const preview = document.getElementById("preview");
-const previewBody = document.getElementById("preview-body");
-const previewLink = document.getElementById("preview-link");
-
-document.getElementById("year").textContent = new Date().getFullYear();
-
-function makeElement(tag, className, text) {
-  const element = document.createElement(tag);
-  if (className) element.className = className;
-  if (text) element.textContent = text;
-  return element;
+function openPreview(name, url) {
+  modalTitle.textContent = name;
+  frame.src = url;
+  modalOpen.href = url;
+  modal.classList.add("open");
 }
 
-function showMessage(text) {
-  const message = makeElement("div", "empty");
-  message.appendChild(makeElement("strong", "", "Preview coming soon"));
-  message.appendChild(makeElement("span", "", text));
-  previewBody.appendChild(message);
+function closePreview() {
+  modal.classList.remove("open");
+  frame.removeAttribute("src");
 }
 
-function openPreview(project) {
-  document.getElementById("preview-title").textContent = project.name;
-  previewBody.innerHTML = "";
-  previewLink.style.display = "none";
+document.getElementById("modalClose").addEventListener("click", closePreview);
+modal.addEventListener("click", event => { if (event.target === modal) closePreview(); });
+document.addEventListener("keydown", event => { if (event.key === "Escape") closePreview(); });
 
-  if (project.url) {
-    const frame = makeElement("iframe");
-    frame.src = project.url;
-    frame.title = project.name;
-    previewLink.href = project.url;
-    previewLink.style.display = "";
-    previewBody.appendChild(frame);
-  } else if (project.code) {
-    const frame = makeElement("iframe");
-    frame.setAttribute("sandbox", "allow-scripts");
-    frame.srcdoc = project.code;
-    frame.title = project.name;
-    previewBody.appendChild(frame);
-  } else {
-    showMessage("Add this project's live link to show how its page looks here.");
-  }
-
-  preview.showModal();
-}
-
-document.getElementById("close-button").addEventListener("click", () => preview.close());
-preview.addEventListener("click", (event) => { if (event.target === preview) preview.close(); });
-preview.addEventListener("close", () => { previewBody.innerHTML = ""; });
-
-function makeCard(project, extraButton) {
-  const card = makeElement("article", "card");
-  card.appendChild(makeElement("h3", "", project.name));
-  if (project.author) card.appendChild(makeElement("div", "author", "by " + project.author));
-  card.appendChild(makeElement("p", "", project.description || "No description."));
-
-  if (project.tags) {
-    const tags = makeElement("ul", "tags");
-    project.tags.forEach((tag) => tags.appendChild(makeElement("li", "", tag)));
-    card.appendChild(tags);
-  }
-
-  const buttons = makeElement("div", "buttons");
-  const previewButton = makeElement("button", "main-button", "Preview");
-  previewButton.addEventListener("click", () => openPreview(project));
-  buttons.appendChild(previewButton);
-
-  if (project.repo) {
-    const codeLink = makeElement("a", "button", "View code");
-    codeLink.href = project.repo;
-    codeLink.target = "_blank";
-    codeLink.rel = "noopener";
-    buttons.appendChild(codeLink);
-  }
-
-  if (extraButton) buttons.appendChild(extraButton);
-  card.appendChild(buttons);
-  return card;
-}
-
-myProjects.forEach((project) => {
-  document.getElementById("my-projects").appendChild(makeCard(project));
-});
-
-async function startCommunity() {
-  const status = document.getElementById("status");
-  const list = document.getElementById("community-projects");
-  const form = document.getElementById("form");
-  const formMessage = document.getElementById("form-message");
-  const submitButton = document.getElementById("submit-button");
-
-  const db = await claude.use("db");
-  if (!db) {
-    status.textContent = "Sign in to Claude to see and add community projects.";
-    return;
-  }
-
-  const user = await claude.use("user");
-  const userId = user ? await user.id() : null;
-  const isOwner = user ? await user.isOwner() : false;
-  const canWrite = user ? (await user.can("data.write")) !== false : true;
-  const projects = db.collection("community");
-
-  if (canWrite) {
-    form.hidden = false;
-    status.hidden = true;
-  } else {
-    status.textContent = "You can preview projects below. Adding projects needs contributor access to this page.";
-  }
-
-  projects.orderBy("createdAt", "desc").limit(60).onSnapshot((snapshot) => {
-    list.innerHTML = "";
-    if (snapshot.empty) {
-      list.appendChild(makeElement("p", "note", "No projects yet. Be the first to add one."));
-      return;
-    }
-
-    snapshot.docs.forEach((doc) => {
-      const data = doc.data();
-      const project = {
-        name: String(data.title || "Untitled"),
-        author: String(data.author || ""),
-        description: String(data.description || ""),
-        code: String(data.code || "")
-      };
-
-      let deleteButton = null;
-      if (isOwner || (userId && data.by === userId)) {
-        deleteButton = makeElement("button", "delete-button", "Delete");
-        deleteButton.addEventListener("click", () => {
-          if (confirm("Delete " + project.name + "?")) projects.doc(doc.id).delete();
-        });
-      }
-
-      list.appendChild(makeCard(project, deleteButton));
-    });
-  }, () => {
-    status.hidden = false;
-    status.textContent = "Could not load community projects right now.";
-  });
-
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const code = document.getElementById("code").value;
-
-    if (code.length > maxCodeLength) {
-      formMessage.textContent = "The code is too long. The limit is about 120,000 characters.";
-      return;
-    }
-
-    submitButton.disabled = true;
-    formMessage.textContent = "Adding...";
-
-    try {
-      await projects.add({
-        title: document.getElementById("title").value.trim(),
-        author: document.getElementById("author").value.trim(),
-        description: document.getElementById("description").value.trim(),
-        code: code,
-        by: userId,
-        createdAt: Date.now()
-      });
-      form.reset();
-      formMessage.textContent = "Added! Your project is now in the list.";
-    } catch (error) {
-      formMessage.textContent = "Could not add it. You may need contributor access to this page.";
-    }
-
-    submitButton.disabled = false;
-  });
-}
-
-startCommunity();
+window.addEventListener("scroll", () => {
+  carpet.style.setProperty("--shift", (window.scrollY * 0.5) + "px");
+}, { passive: true });
 </script>
 </body>
 </html>
