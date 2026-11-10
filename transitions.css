@@ -1,0 +1,64 @@
+.page-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+  pointer-events: none;
+}
+
+.page-transition span {
+  position: absolute;
+  inset: 0;
+  transform: scaleY(1);
+  transform-origin: bottom;
+  transition: transform 0.75s cubic-bezier(0.77, 0, 0.18, 1);
+}
+
+.page-transition span:first-child {
+  background: var(--accent, #22c55e);
+}
+
+.page-transition span:last-child {
+  background: #000;
+}
+
+.is-ready .page-transition span {
+  transform: scaleY(0);
+}
+
+.is-ready .page-transition span:first-child {
+  transition-delay: 0.12s;
+}
+
+.is-leaving .page-transition span {
+  transform: scaleY(1);
+  transition-duration: 0.55s;
+}
+
+.is-leaving .page-transition span:first-child {
+  transition-delay: 0s;
+}
+
+.is-leaving .page-transition span:last-child {
+  transition-delay: 0.12s;
+}
+
+.is-ready main,
+.is-ready .content {
+  animation: page-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.45s both;
+}
+
+@keyframes page-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-transition {
+    display: none;
+  }
+
+  .is-ready main,
+  .is-ready .content {
+    animation: none;
+  }
+}
